@@ -1,0 +1,20 @@
+
+<p-card header="Login" [style]="{'width': '400px', 'margin':'auto'}">
+  <form #loginForm="ngForm">
+    <div class="p-float-label">
+      <input id="Email" name="Email" [(ngModel)]="account.Email" required #Email="ngModel"  pInputText/>
+      <label for="Email">User name</label>
+      <div><small id="Email-help" [hidden]="Email.valid || Email.pristine" class="p-error block">Please enter your Email</small></div>
+    </div>
+    <br>
+    <br>
+    <div class="p-float-label">
+      <p-password id="password" name="password" [(ngModel)]="account.Password" #Password="ngModel" required  [toggleMask]="true" ></p-password>
+      <label for="password">Password</label>
+      <div><small id="password-help" [hidden]="Password.valid || Password.pristine" class="p-error block">Please enter your password</small></div>
+    </div>
+    <br>
+    <button pButton  class="p-button-success" [disabled]="!loginForm.form.valid" type="submit" (click)="login()" label="Login"></button>
+  </form>
+
+</p-card>

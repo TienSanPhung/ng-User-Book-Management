@@ -1,0 +1,68 @@
+
+<p-toast></p-toast>
+
+<div class="card">
+  <h2 class="m-0">Manage Books</h2>
+  <p-toolbar styleClass="mb-4">
+
+    <ng-template pTemplate="left">
+
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" routerLink="../add"></button>
+
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt [value]="BookList" [rows]="5" [paginator]="true" [globalFilterFields]="['BookId','Name','Author','Publisher']" responsiveLayout="scroll"
+           [(selection)]="BookList" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="header">
+      <tr >
+        <th style="width: 3rem">
+
+        </th>
+        <th pSortableColumn="BookId">Id <p-sortIcon field="BookId"></p-sortIcon></th>
+        <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
+        <th pSortableColumn="Category">Category <p-sortIcon field="Category"></p-sortIcon></th>
+        <th pSortableColumn="Description">Description <p-sortIcon field="Description"></p-sortIcon></th>
+        <th pSortableColumn="Author">Author <p-sortIcon field="Author"></p-sortIcon></th>
+        <th pSortableColumn="Publisher">Publisher <p-sortIcon field="Publisher"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+      <tr >
+        <td>
+
+        </td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.category}}</td>
+        <td>{{book.description}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.publisher}}</td>
+        <td>
+
+          <button pButton type="button" label="View" class="p-button-text p-button-secondary p-button-raised" routerLink="../books/{{book.bookId}}"></button>
+          <button pButton type="button" label="Edit" class="p-button-text p-button-success p-button-raised mr-2" (click)="updateBooks(book)"></button>
+          <button pButton type="button" label="Delete" class="p-button-text p-button-raised p-button-warning mr-2"  (click)="deleteBook(book.bookId)"></button>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{BookList ? BookList.length : 0 }} Books.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<br>
+<ng-template pTemplate="right">
+  <button pButton pRipple label="Logout"  class="p-button-success" (click)="logout()"></button>
+</ng-template>
+
+

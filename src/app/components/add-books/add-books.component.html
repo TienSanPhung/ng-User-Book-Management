@@ -1,0 +1,53 @@
+
+
+<p-card header="Add new book" [style]="{'width': '450px', 'margin':'auto'}">
+
+  <form #addForm="ngForm" *ngIf="!submitted" >
+    <div class="p-float-label">
+      <input id="Name"  class="full__width" type="text" name="Name" [(ngModel)]="Books.name" #name="ngModel" required  pInputText/>
+      <label for="Name">Name</label>
+      <div><small id="Name-help" [hidden]="name.valid || name.pristine" class="p-error block"></small></div>
+    </div>
+    <br>
+    <br>
+    <div class="p-float-label">
+      <input id="Category" class="full__width" type="text" name="Category" [(ngModel)]="Books.category" #email="ngModel" Category required  pInputText/>
+      <label for="Category">Category</label>
+      <div><small id="Category-help" class="p-error block"></small></div>
+    </div>
+    <br>
+    <br>
+    <div class="p-float-label">
+      <input id="Description" class="full__width" type="text" name="Description" [(ngModel)]="Books.description" #Description="ngModel" required  pInputText/>
+      <label for="Description">Description</label>
+      <div><small id="Description-help"  class="p-error block"></small></div>
+    </div>
+    <br>
+    <br>
+    <div class="p-float-label">
+      <input id="Author" class="full__width" type="text" name="Author" [(ngModel)]="Books.author" #Author="ngModel" required  pInputText />
+      <label for="Author">Author</label>
+      <div><small id="Author-help"  class="p-error block"></small></div>
+    </div>
+    <br>
+    <br>
+    <div class="p-float-label">
+      <input id="Publisher" class="full__width" type="text" name="Publisher" [(ngModel)]="Books.publisher" #Publisher="ngModel" required    pInputText/>
+      <label for="Publisher">Publisher</label>
+      <div><small id="Publisher-help"  class="p-error block"></small></div>
+    </div>
+    <br>
+    <p-button  (click)="saveBooks()" [disabled]="!addForm.form.valid" label="Submit" icon="pi pi-check"></p-button>
+  </form>
+  <div *ngIf="submitted">
+    <h4>User {{Books.name}} was added successfully!</h4>
+    <button pButton (click)="newBook()" class="p-button-success" label="New" icon="pi pi-plus" ></button>
+  </div>
+
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple type="button" label="Back" icon="pi pi-replay" class="p-button-outlined p-button-rounded" (click)="goBack()"></button>
+
+  </ng-template>
+</p-card>
+
